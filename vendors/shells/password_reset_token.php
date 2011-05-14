@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * PasswordResetToken Cron Job
  */
@@ -15,8 +15,8 @@ class PasswordResetTokenShell extends Shell {
 			if ($time > $expired) {
 				$sql = "UPDATE users SET reset_password_token = NULL, token_created_at = NULL WHERE id = " . $t['User']['id'] . "";
 				$this->User->query($sql);
-			} 
-		} 
+			}
+		}
 	}
 }
 

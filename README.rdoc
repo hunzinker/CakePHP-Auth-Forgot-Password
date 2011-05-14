@@ -5,7 +5,7 @@ CakePHP's Auth component and ACL behavior.
 
 == Installation
 
-Follow the example MVC setup included and modify as necesary. *NOTE:* this code is to be used as an example only.
+Follow the example MVC setup included and modify as necesary. * NOTE: * this code is to be used as an example only.
 
 === Details
 
@@ -23,12 +23,12 @@ the token is destroyed and the user is notified via email.
 
 I created an hourly cron job to clean up invalid tokens. See vendors > shells > password_reset_token.php.
 
-+crontab -e+
-+0 * * * * /path_to_cakeshell/cakeshell password_reset_token -cli /usr/bin -console /path_to_cake_console/cake/console -app /path_to_app/public_html/app >> /path_to_log_file/password_reset_token.log+
++ crontab -e +
++ 0 * * * * /path_to_cakeshell/cakeshell password_reset_token -cli /usr/bin -console /path_to_cake_console/cake/console -app /path_to_app/public_html/app >> /path_to_log_file/password_reset_token.log+
 
 === Sample SQL
 
-+
++ 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL DEFAULT '',
@@ -48,7 +48,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `reset_password_token` (`reset_password_token`),
   KEY `group_id` (`group_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
-+
+ +
 
 === TODO
 
