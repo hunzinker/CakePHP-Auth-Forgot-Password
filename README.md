@@ -9,13 +9,13 @@ Follow the example MVC setup included and modify as necesary. NOTE: this code is
 
 ### Details
 
-Request to forgot_password() prompts user to enter username. If the username is found, 
-__generatePasswordToken() sets reset_password_token = [hash of a random string] and 
-sets token_created_at = [current timestamp]. An email is sent to the user containing
+Request to `forgot_password()` prompts user to enter username. If the username is found, 
+`__generatePasswordToken()` sets `reset_password_token = [hash of a random string]` and 
+sets `token_created_at = [current timestamp]`. An email is sent to the user containing
 
-https://example.com/users/reset_password_token/[random_hashed_string]
+`https://example.com/users/reset_password_token/[random_hashed_string]`
 
-to complete the request within 24 hours. reset_password_token($token) validates the token, user, etc., 
+to complete the request within 24 hours. `reset_password_token($token)` validates the token, user, etc., 
 and prompts the user to reset their password. If successful, the password is reset, 
 the token is destroyed and the user is notified via email.
 
@@ -23,11 +23,14 @@ the token is destroyed and the user is notified via email.
 
 I created an hourly cron job to clean up invalid tokens. See vendors > shells > password_reset_token.php.
 
+```bash
   crontab -e
   0 * * * * /path_to_cakeshell/cakeshell password_reset_token -cli /usr/bin -console /path_to_cake_console/cake/console -app /path_to_app/public_html/app >> /path_to_log_file/password_reset_token.log
+```
 
 ### Sample SQL
 
+```sql
   CREATE TABLE `users` (
     `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
     `username` varchar(50) NOT NULL DEFAULT '',
@@ -47,6 +50,7 @@ I created an hourly cron job to clean up invalid tokens. See vendors > shells > 
     UNIQUE KEY `reset_password_token` (`reset_password_token`),
     KEY `group_id` (`group_id`)
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 ;
+```
 
 ### TODO
 
